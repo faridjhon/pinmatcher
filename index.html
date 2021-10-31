@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pin Generator</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="pin-generator half-width">
+                    <input id="pinresult" class="form-control" type="text">
+                    <button id="randomnumber" onclick="pinButton()" class="generate-btn">Generate Pin</button>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="input-section half-width">
+                    <input id="outputresult" class="form-control" type="text">
+                    <div class="numbers">
+                        <div class="calc-body">
+                            <div class="calc-button-row">
+                              <div class="button" onClick="inputNumber('7')">7</div>
+                              <div class="button" onClick="inputNumber('8')">8</div>
+                              <div class="button" onClick="inputNumber('9')">9</div>
+                            </div>
+                            <div class="calc-button-row">
+                              <div class="button" onClick="inputNumber('4')">4</div>
+                              <div class="button" onClick="inputNumber('5')">5</div>
+                              <div class="button" onClick="inputNumber('6')">6</div>
+                            </div>
+                            <div class="calc-button-row">
+                              <div class="button" onClick="inputNumber('1')">1</div>
+                              <div class="button"onClick="inputNumber('2')">2</div>
+                              <div class="button"onClick="inputNumber('3')">3</div>
+                            </div>
+                            <div class="calc-button-row">
+                                <div class="button">&lt;</div>
+                                <div class="button" onClick="inputNumber('0')">0</div>
+                                <div class="button" onClick="delateMe()">C</div>
+                            </div>
+                            <div>
+                                <button type="submit" class="submit-btn" onclick="matchingSubmit()">Submit</button>
+                                <p class="action-left">3 try left</p>
+                            </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="notify-section">
+            <p id="didnotmatch"class="notify">❌ Pin Didn't Match, Please try again</p>
+            <p id ="match"class="notify">✅ Pin Matched... Secret door is opening for you</p>
+        </div>
+    </div>
+
+    <script>
+        function inputNumber (newvalue){
+            document.getElementById("outputresult").value +=newvalue;
+            
+
+        }
+        function delateMe() {
+            document.getElementById("outputresult").value='';
+        }
+
+        function matchingSubmit() {
+            
+            var verifynumber=document.getElementById("outputresult").value ;
+             var pinrequestnumber =  document.getElementById('pinresult').value ;
+            if (pinrequestnumber == verifynumber) {
+               document.getElementById('match').style.display='block';   
+                           
+                
+            } else {
+
+                document.getElementById('didnotmatch').style.display='block';   
+                           
+                
+            }
+            
+        }
+
+        function pinButton (){            
+            var pinnumber= document.getElementById('pinresult').innerHTML=Math.random() *100000;
+            var pinresult=Math.floor(pinnumber);
+            document.getElementById('pinresult').value =pinresult;
+            
+        }
+
+    </script>
+</body>
+</html>
